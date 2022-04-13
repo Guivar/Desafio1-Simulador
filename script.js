@@ -18,64 +18,109 @@ le pide al usuario que ingrese un cupon de descuento(dado al inicio para
      3.4 si el usuario no tiene cupon de descuento el programa mostrara los precios sin descuento
 
 
-*/
+// */
 
-alert('Carga tu descuento con la palabra "promo" y aplicar el cupon para diferentes descuentos');
-const Pantalon = 3000;
-const Remera = 2000;
-const Zapatillas = 12000;
-const Buzo = 5000;
-let bucle = 0;
-while (bucle <1) {
-    let cupon = prompt("Tienes un cupon de descuento? ingresalo ahora, de lo contrario escribe cualquier letra o numero y veras nuestros productos ofrecidos")
-    let producto = parseInt(prompt("Selecciona un producto, digitando el numero correspondite:\n 1-Pantalon $3000\n 2-Remera $2000\n 3-Zapatillas $12000\n 4-Buzo $5000\n 5-Salir de la tienda."));
-    if (cupon === "promo") {
+// alert('Carga tu descuento con la palabra "promo" y aplicar el cupon para diferentes descuentos');
+// const Pantalon = 3000;
+// const Remera = 2000;
+// const Zapatillas = 12000;
+// const Buzo = 5000;
+// let bucle = 0;
+// while (bucle <1) {
+//     let cupon = prompt("Tienes un cupon de descuento? ingresalo ahora, de lo contrario escribe cualquier letra o numero y veras nuestros productos ofrecidos")
+//     let producto = parseInt(prompt("Selecciona un producto, digitando el numero correspondite:\n 1-Pantalon $3000\n 2-Remera $2000\n 3-Zapatillas $12000\n 4-Buzo $5000\n 5-Salir de la tienda."));
+//     if (cupon === "promo") {
 
-        if (producto > 0 && producto < 6) {
-            switch (producto) {
-                case 1:
-                    porcentaje = Pantalon * 0.20;
-                    descuento = Pantalon - porcentaje;
-                    alert(`Tu producto cuesta ${Pantalon} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
-                    break;
+//         if (producto > 0 && producto < 6) {
+//             switch (producto) {
+//                 case 1:
+//                     porcentaje = Pantalon * 0.20;
+//                     descuento = Pantalon - porcentaje;
+//                     alert(`Tu producto cuesta ${Pantalon} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
+//                     break;
 
-                case 2:
-                    porcentaje = Remera * 0.25;
-                    descuento = Remera - porcentaje;
-                    alert(`Tu producto cuesta ${Remera} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
-                    break;
+//                 case 2:
+//                     porcentaje = Remera * 0.25;
+//                     descuento = Remera - porcentaje;
+//                     alert(`Tu producto cuesta ${Remera} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
+//                     break;
 
-                case 3:
-                    porcentaje = Zapatillas * 0.15;
-                    descuento = Zapatillas - porcentaje;
-                    alert(`Tu producto cuesta ${Zapatillas} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
-                    break;
+//                 case 3:
+//                     porcentaje = Zapatillas * 0.15;
+//                     descuento = Zapatillas - porcentaje;
+//                     alert(`Tu producto cuesta ${Zapatillas} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
+//                     break;
 
-                case 4:
-                    porcentaje = Buzo * 0.15;
-                    descuento = Buzo - porcentaje;
-                    alert(`Tu producto cuesta ${Buzo} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
-                    break;
+//                 case 4:
+//                     porcentaje = Buzo * 0.15;
+//                     descuento = Buzo - porcentaje;
+//                     alert(`Tu producto cuesta ${Buzo} el descuento fue de ${porcentaje}, solo deberas pagar un total de  ${descuento}`)
+//                     break;
             
-                default:
-                    alert("No ingresaste ningun valor valido, ingresa un valor correcto")
-                    break;
-            }
-        } 
-    } else {
-        if (producto === 1) {
-            alert(`no ingresaste cupon de descuento, tu producto cuesta ${Pantalon}`)
-        } else if (producto === 2) {
-            alert(`no ingresaste cupon de descuento, tu producto cuesta ${Remera}`)
-        } else if (producto === 3) {
-            alert(`no ingresaste cupon de descuento, tu producto cuesta ${Zapatillas}`)
-        } else if (producto === 4) {
-            alert(`no ingresaste cupon de descuento, tu producto cuesta ${Buzo}`)
-        }else if(producto===5){
-            bucle = bucle+1;
-        }else {
+//                 default:
+//                     alert("No ingresaste ningun valor valido, ingresa un valor correcto")
+//                     break;
+//             }
+//         } 
+//     } else {
+//         if (producto === 1) {
+//             alert(`no ingresaste cupon de descuento, tu producto cuesta ${Pantalon}`)
+//         } else if (producto === 2) {
+//             alert(`no ingresaste cupon de descuento, tu producto cuesta ${Remera}`)
+//         } else if (producto === 3) {
+//             alert(`no ingresaste cupon de descuento, tu producto cuesta ${Zapatillas}`)
+//         } else if (producto === 4) {
+//             alert(`no ingresaste cupon de descuento, tu producto cuesta ${Buzo}`)
+//         }else if(producto===5){
+//             bucle = bucle+1;
+//         }else {
+//             alert("No ingresaste ningun valor valido, ingresa un valor correcto")
+            
+//         }
+//     }
+// }
+
+let input;//Asignación de input (si/continuar)
+const productos = [];
+const productos_agregados = [];
+const lista_productos = [];
+let cantidad = 1;
+let unidades = 1;
+
+do {
+    let opcion = parseInt(prompt("Selecciona un producto, digitando el numero correspondite:\n 1 - Registrar producto\n 2 - Modificar datos\n 3 - Salir del simulador"));
+    if (opcion > 0 && opcion < 6) {
+        switch (opcion) {
+            case 1:
+                let cantidad = parseInt(prompt("Que cantidad deseas ingresar?"));
+                do{
+                    let entrada = prompt("Ingresar producto");
+                    productos.push(entrada.toUpperCase());
+                    console.log(productos.length);
+                }while(productos.length != cantidad)
+                console.log(productos.join("\n"))  
+            break;
+
+            case 2:
+                let unidades = parseInt(prompt("Que cantidad deseas ingresar?"));
+                do{
+                    let entrada = prompt("Ingresar producto");
+                    productos_agregados.push(entrada.toUpperCase());
+                    console.log(productos_agregados.length);
+                }while(productos_agregados.length != unidades) 
+                const lista_productos = productos.concat(productos_agregados)
+                console.log(lista_productos.join("\n"))
+            break
+
+            case 3:         
+            break;
+
+            default:
             alert("No ingresaste ningun valor valido, ingresa un valor correcto")
-            
+            break;
         }
+        input = prompt('Quieres salir del menu? (SI/NO Presiona cualquier boton)');
+        input = input.toUpperCase();
     }
-}
+} while(input!='SI')
+
